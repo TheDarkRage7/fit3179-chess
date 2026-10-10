@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Studio practice: daily city costs",
+  "width": 450,
+  "height": 220,
+  "data": {
+    "url": "https://raw.githubusercontent.com/FIT3179/Datasets/main/city_daily_cost.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": {
+    "type": "bar",
+    "color": "#0d73d8"
+  },
+  "encoding": {
+    "x": {
+      "field": "daily_cost",
+      "type": "quantitative",
+      "title": "Daily cost"
+    },
+    "y": {
+      "field": "city",
+      "type": "nominal",
+      "title": "City",
+      "sort": "-x"
+    },
+    "tooltip": [
+      {"field": "city", "type": "nominal", "title": "City"},
+      {
+        "field": "daily_cost",
+        "type": "quantitative",
+        "title": "Daily cost"
+      }
+    ]
+  }
+}

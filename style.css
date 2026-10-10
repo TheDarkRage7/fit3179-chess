@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  background: #f5f2e9;
+  color: #26332b;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+h1,
+h2 {
+  font-family: Georgia, serif;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+section {
+  margin-top: 32px;
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+}
+
+.source {
+  font-size: 13px;
+  color: #526158;
+}
+
+a {
+  color: #426b50;
+}
