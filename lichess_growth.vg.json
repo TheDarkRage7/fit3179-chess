@@ -1,0 +1,76 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How has online chess grown?",
+    "subtitle": "Monthly rated standard games on Lichess, Jan 2013–Sep 2026",
+    "anchor": "start"
+  },
+  "width": 650,
+  "height": 320,
+  "data": {
+    "url": "lichess_monthly_games.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "mark": {
+    "type": "line",
+    "color": "#426B50",
+    "strokeWidth": 2.5
+  },
+  "encoding": {
+    "x": {
+      "field": "month",
+      "type": "temporal",
+      "title": "Year",
+      "axis": {
+        "format": "%Y",
+        "tickCount": 8,
+        "labelAngle": 0,
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "games",
+      "type": "quantitative",
+      "title": "Rated games per month",
+      "scale": {
+        "zero": true
+      },
+      "axis": {
+        "format": "~s",
+        "tickCount": 6
+      }
+    },
+    "tooltip": [
+      {
+        "field": "month",
+        "type": "temporal",
+        "title": "Month",
+        "format": "%B %Y"
+      },
+      {
+        "field": "games",
+        "type": "quantitative",
+        "title": "Rated games",
+        "format": ","
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titlePadding": 12,
+      "gridColor": "#E5E8E3"
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitlePadding": 8
+    }
+  }
+}

@@ -1,4 +1,4 @@
-vegaEmbed("#practice-chart", "practice.vg.json", {
+vegaEmbed("#practice-chart", "lichess_growth.vg.json", {
   actions: true
 }).catch(function (error) {
   document.getElementById("practice-chart").textContent =
