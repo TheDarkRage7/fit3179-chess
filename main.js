@@ -24,3 +24,13 @@ vegaEmbed(
 
   console.error(error);
 });
+vegaEmbed(
+  "#olympiad-hosts-map",
+  "olympiad_hosts_map.vg.json",
+  { actions: true }
+).catch(function (error) {
+  document.getElementById("olympiad-hosts-map").textContent =
+    "The map could not load. Check the browser console.";
+
+  console.error(error);
+});

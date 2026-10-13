@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where has the Chess Olympiad been hosted?",
+    "subtitle": [
+      "Completed editions, 2000–2026",
+      "One equal-sized dot per city; colour shows latest hosting period"
+    ],
+    "anchor": "start"
+  },
+  "width": 700,
+  "height": 370,
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.id != '010'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E8EAE4",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "olympiad_host_cities.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "host_years": "string",
+            "editions": "number",
+            "latest_year": "number",
+            "longitude": "number",
+            "latitude": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.latest_year < 2010 ? '2000–2009' : datum.latest_year < 2020 ? '2010–2019' : '2020–2026'",
+          "as": "period"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 110,
+        "opacity": 1,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "period",
+          "type": "nominal",
+          "title": "Latest hosting period",
+          "scale": {
+            "domain": [
+              "2000–2009",
+              "2010–2019",
+              "2020–2026"
+            ],
+            "range": [
+              "#426B50",
+              "#477DA8",
+              "#D99424"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "city",
+            "type": "nominal",
+            "title": "Host city"
+          },
+          {
+            "field": "country",
+            "type": "nominal",
+            "title": "Country"
+          },
+          {
+            "field": "host_years",
+            "type": "nominal",
+            "title": "Hosting years"
+          },
+          {
+            "field": "editions",
+            "type": "quantitative",
+            "title": "Editions hosted in this period",
+            "format": "d"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitlePadding": 8
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}
