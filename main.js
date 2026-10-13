@@ -14,3 +14,13 @@ vegaEmbed("#grandmasters-map", "grandmasters_map.vg.json", {
 
   console.error(error);
 });
+vegaEmbed(
+  "#participation-map",
+  "chess_participation_map.vg.json",
+  { actions: true }
+).catch(function (error) {
+  document.getElementById("participation-map").textContent =
+    "The map could not load. Check the browser console.";
+
+  console.error(error);
+});

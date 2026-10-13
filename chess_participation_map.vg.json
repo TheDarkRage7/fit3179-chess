@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where is rated chess most widespread?",
+    "subtitle": [
+      "Listed FIDE standard-rated players per million residents",
+      "Population: 2025 | Active and inactive rated players included"
+    ],
+    "anchor": "start"
+  },
+  "width": 700,
+  "height": 370,
+  "projection": {
+    "type": "equalEarth"
+  },
+  "data": {
+    "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+    "format": {
+      "type": "topojson",
+      "feature": "countries"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.id != '010'"
+    },
+    {
+      "lookup": "id",
+      "from": {
+        "data": {
+          "url": "chess_players_per_million.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "id": "string",
+              "rated_players": "number",
+              "population": "number",
+              "players_per_million": "number"
+            }
+          }
+        },
+        "key": "id",
+        "fields": [
+          "country",
+          "rated_players",
+          "population",
+          "players_per_million"
+        ]
+      }
+    },
+    {
+      "calculate": "isValid(datum.players_per_million) ? format(datum.players_per_million, ',.1f') : 'No matched data'",
+      "as": "rate_label"
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#FFFFFF",
+    "strokeWidth": 0.5
+  },
+  "encoding": {
+    "color": {
+      "condition": {
+        "test": "isValid(datum.players_per_million)",
+        "field": "players_per_million",
+        "type": "quantitative",
+        "title": "Players per million",
+        "scale": {
+          "type": "threshold",
+          "domain": [10, 50, 100, 250, 500, 1000],
+          "range": [
+            "#F0F9E8",
+            "#D9F0A3",
+            "#ADDD8E",
+            "#78C679",
+            "#41AB5D",
+            "#238443",
+            "#005A32"
+          ]
+        },
+        "legend": {
+          "orient": "bottom",
+          "direction": "horizontal",
+          "format": ",.0f"
+        }
+      },
+      "value": "#D9D9D9"
+    },
+    "tooltip": [
+      {
+        "field": "properties.name",
+        "type": "nominal",
+        "title": "Country"
+      },
+      {
+        "field": "rate_label",
+        "type": "nominal",
+        "title": "Players per million"
+      },
+      {
+        "field": "rated_players",
+        "type": "quantitative",
+        "title": "Listed rated players",
+        "format": ","
+      },
+      {
+        "field": "population",
+        "type": "quantitative",
+        "title": "Population (2025)",
+        "format": ","
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitlePadding": 8
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}
