@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where are chess grandmasters?",
+    "subtitle": "GM title holders listed in the supplied FIDE standard-rating file",
+    "anchor": "start"
+  },
+  "width": 700,
+  "height": 370,
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.id != '010'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#E8EAE4",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "grandmasters_by_federation.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "id": "string",
+            "gm_count": "number",
+            "longitude": "number",
+            "latitude": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "lookup": "id",
+          "from": {
+            "data": {
+              "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+              "format": {
+                "type": "topojson",
+                "feature": "countries"
+              }
+            },
+            "key": "id"
+          },
+          "as": "geo"
+        },
+        {
+          "calculate": "datum.geo ? geoCentroid(null, datum.geo) : [datum.longitude, datum.latitude]",
+          "as": "position"
+        },
+        {
+          "calculate": "datum.position[0]",
+          "as": "map_lon"
+        },
+        {
+          "calculate": "datum.position[1]",
+          "as": "map_lat"
+        },
+        {
+          "filter": "isValid(datum.map_lon) && isValid(datum.map_lat)"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.75,
+        "stroke": "#FFFFFF",
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "map_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "map_lat",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "gm_count",
+          "type": "quantitative",
+          "title": "Grandmasters",
+          "scale": {
+            "type": "linear",
+            "domain": [0, 184],
+            "range": [0, 2000]
+          },
+          "legend": {
+            "values": [10, 50, 100, 180]
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.federation == 'AUS'",
+            "value": "#D99424"
+          },
+          "value": "#426B50"
+        },
+        "order": {
+          "field": "gm_count",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "country",
+            "type": "nominal",
+            "title": "Federation"
+          },
+          {
+            "field": "federation",
+            "type": "nominal",
+            "title": "Code"
+          },
+          {
+            "field": "gm_count",
+            "type": "quantitative",
+            "title": "GM title holders",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "title": {
+      "fontSize": 18,
+      "subtitleFontSize": 12,
+      "subtitlePadding": 8
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}
