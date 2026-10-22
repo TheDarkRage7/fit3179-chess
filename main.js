@@ -34,3 +34,12 @@ vegaEmbed(
 
   console.error(error);
 });
+vegaEmbed(
+  "#rating-histogram",
+  "fide_rating_histogram_hover.vg.json",
+  { actions: true }
+).catch(error => {
+  document.querySelector("#rating-histogram").textContent =
+    "The rating chart could not be loaded.";
+  console.error(error);
+});

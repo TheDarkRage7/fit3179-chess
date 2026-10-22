@@ -1,0 +1,234 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 650,
+  "height": 320,
+  "title": {
+    "text": "How do Australian chess ratings compare?",
+    "subtitle": "Listed FIDE standard-rated players \u00b7 active and inactive"
+  },
+  "data": {
+    "url": "fide_rating_distribution.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "rating_start": "number",
+        "rating_end": "number",
+        "players": "number",
+        "proportion": "number"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "ratingGroup",
+      "value": "Australia",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Australia",
+          "Worldwide"
+        ],
+        "name": "Compare: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.group === ratingGroup"
+    },
+    {
+      "calculate": "format(datum.rating_start, '.0f') + '\u2013' + format(datum.rating_end - 1, '.0f')",
+      "as": "rating_range"
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13
+    },
+    "title": {
+      "anchor": "start",
+      "fontSize": 18,
+      "subtitleFontSize": 12
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#426B50",
+        "binSpacing": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "rating_start",
+          "type": "quantitative",
+          "bin": "binned",
+          "title": "FIDE standard rating",
+          "axis": {
+            "format": "d",
+            "grid": true,
+            "values": [
+              1400,
+              1500,
+              1600,
+              1700,
+              1800,
+              1900,
+              2000,
+              2100,
+              2200,
+              2300,
+              2400,
+              2500,
+              2600,
+              2700,
+              2800,
+              2900
+            ],
+            "gridColor": "#D8D8D8",
+            "gridOpacity": 1
+          },
+          "scale": {
+            "domain": [
+              1400,
+              2900
+            ],
+            "nice": false
+          }
+        },
+        "x2": {
+          "field": "rating_end"
+        },
+        "y": {
+          "field": "proportion",
+          "type": "quantitative",
+          "title": "Share of rated players",
+          "axis": {
+            "format": ".0%"
+          },
+          "scale": {
+            "domain": [
+              0,
+              0.3
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "rating_range",
+            "type": "nominal",
+            "title": "Rating range"
+          },
+          {
+            "field": "players",
+            "type": "quantitative",
+            "title": "Players",
+            "format": ","
+          },
+          {
+            "field": "proportion",
+            "type": "quantitative",
+            "title": "Share",
+            "format": ".3%"
+          },
+          {
+            "field": "group",
+            "type": "nominal",
+            "title": "Group"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "color": "#426B50",
+        "opacity": 0.025,
+        "cursor": "crosshair"
+      },
+      "encoding": {
+        "x": {
+          "field": "rating_start",
+          "type": "quantitative",
+          "bin": "binned",
+          "title": "FIDE standard rating",
+          "axis": {
+            "format": "d",
+            "grid": true,
+            "values": [
+              1400,
+              1500,
+              1600,
+              1700,
+              1800,
+              1900,
+              2000,
+              2100,
+              2200,
+              2300,
+              2400,
+              2500,
+              2600,
+              2700,
+              2800,
+              2900
+            ],
+            "gridColor": "#D8D8D8",
+            "gridOpacity": 1
+          },
+          "scale": {
+            "domain": [
+              1400,
+              2900
+            ],
+            "nice": false
+          }
+        },
+        "x2": {
+          "field": "rating_end"
+        },
+        "y": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              0.3
+            ]
+          }
+        },
+        "y2": {
+          "datum": 0.3
+        },
+        "tooltip": [
+          {
+            "field": "rating_range",
+            "type": "nominal",
+            "title": "Rating range"
+          },
+          {
+            "field": "players",
+            "type": "quantitative",
+            "title": "Players",
+            "format": ","
+          },
+          {
+            "field": "proportion",
+            "type": "quantitative",
+            "title": "Share",
+            "format": ".3%"
+          },
+          {
+            "field": "group",
+            "type": "nominal",
+            "title": "Group"
+          }
+        ]
+      }
+    }
+  ]
+}
