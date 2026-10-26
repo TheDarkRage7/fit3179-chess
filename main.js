@@ -61,3 +61,12 @@ vegaEmbed(
     "The rating heatmap could not be loaded.";
   console.error(error);
 });
+vegaEmbed(
+  "#opening-treemap",
+  "opening_treemap.vg.json",
+  { actions: true }
+).catch(error => {
+  document.querySelector("#opening-treemap").textContent =
+    "The opening treemap could not be loaded.";
+  console.error(error);
+});

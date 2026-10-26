@@ -1,0 +1,290 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 700,
+  "height": 410,
+  "padding": 10,
+  "title": {
+    "text": "Which openings appear most often?",
+    "subtitle": [
+      "15,117 unique rated games \u00b7 historical Lichess sample (2013\u20132017)",
+      "Top 12 families; remaining families combined \u00b7 area represents game count"
+    ],
+    "anchor": "start",
+    "fontSize": 20,
+    "subtitleFontSize": 12
+  },
+  "data": [
+    {
+      "name": "tree",
+      "values": [
+        {
+          "id": "root",
+          "parent": null,
+          "games": 0,
+          "share": 0
+        },
+        {
+          "id": "Sicilian Defense",
+          "parent": "root",
+          "games": 1964,
+          "share": 0.12991995766355757
+        },
+        {
+          "id": "French Defense",
+          "parent": "root",
+          "games": 1060,
+          "share": 0.07011973275120725
+        },
+        {
+          "id": "Queen's Pawn Game",
+          "parent": "root",
+          "games": 786,
+          "share": 0.05199444334193292
+        },
+        {
+          "id": "Italian Game",
+          "parent": "root",
+          "games": 736,
+          "share": 0.04868690877819673
+        },
+        {
+          "id": "King's Pawn Game",
+          "parent": "root",
+          "games": 678,
+          "share": 0.04485016868426275
+        },
+        {
+          "id": "Ruy Lopez",
+          "parent": "root",
+          "games": 618,
+          "share": 0.040881127207779325
+        },
+        {
+          "id": "Scandinavian Defense",
+          "parent": "root",
+          "games": 554,
+          "share": 0.036647482966197
+        },
+        {
+          "id": "English Opening",
+          "parent": "root",
+          "games": 533,
+          "share": 0.0352583184494278
+        },
+        {
+          "id": "Caro-Kann Defense",
+          "parent": "root",
+          "games": 444,
+          "share": 0.029370906925977377
+        },
+        {
+          "id": "Scotch Game",
+          "parent": "root",
+          "games": 362,
+          "share": 0.023946550241450024
+        },
+        {
+          "id": "Queen's Gambit Declined",
+          "parent": "root",
+          "games": 309,
+          "share": 0.020440563603889662
+        },
+        {
+          "id": "Van't Kruijs Opening",
+          "parent": "root",
+          "games": 271,
+          "share": 0.017926837335450155
+        },
+        {
+          "id": "Other opening families",
+          "parent": "root",
+          "games": 6802,
+          "share": 0.44995700205067146
+        }
+      ],
+      "transform": [
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
+        {
+          "type": "treemap",
+          "field": "games",
+          "sort": {
+            "field": "value",
+            "order": "descending"
+          },
+          "method": "squarify",
+          "paddingInner": 3,
+          "round": true,
+          "size": [
+            {
+              "signal": "width"
+            },
+            {
+              "signal": "height"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.depth === 1"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Sicilian Defense",
+        "French Defense",
+        "Queen's Pawn Game",
+        "Italian Game",
+        "King's Pawn Game",
+        "Ruy Lopez",
+        "Scandinavian Defense",
+        "English Opening",
+        "Caro-Kann Defense",
+        "Scotch Game",
+        "Queen's Gambit Declined",
+        "Van't Kruijs Opening"
+      ],
+      "range": [
+        "#426B50",
+        "#477DA8",
+        "#976C87",
+        "#A57636",
+        "#467F80",
+        "#786D9C",
+        "#537D44",
+        "#AD6452",
+        "#59748B",
+        "#8C783D",
+        "#775D55",
+        "#39796A"
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+          "y": {
+            "field": "y0"
+          },
+          "x2": {
+            "field": "x1"
+          },
+          "y2": {
+            "field": "y1"
+          },
+          "fill": [
+            {
+              "test": "datum.id === 'Other opening families'",
+              "value": "#D9DCD5"
+            },
+            {
+              "scale": "color",
+              "field": "id"
+            }
+          ],
+          "stroke": {
+            "value": "white"
+          },
+          "tooltip": {
+            "signal": "{'Opening family': datum.id, 'Games': format(datum.games, ','), 'Share of sample': format(datum.share, '.1%')}"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.x0 + 8"
+          },
+          "y": {
+            "signal": "datum.y0 + 17"
+          },
+          "text": {
+            "signal": "datum.id"
+          },
+          "limit": {
+            "signal": "max(0, datum.x1 - datum.x0 - 16)"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fontWeight": {
+            "value": "bold"
+          },
+          "fill": {
+            "signal": "datum.id === 'Other opening families' ? '#29352B' : 'white'"
+          },
+          "opacity": {
+            "signal": "datum.x1-datum.x0 > 65 && datum.y1-datum.y0 > 45 ? 1 : 0"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "interactive": false,
+      "from": {
+        "data": "leaves"
+      },
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "datum.x0 + 8"
+          },
+          "y": {
+            "signal": "datum.y0 + 36"
+          },
+          "text": {
+            "signal": "format(datum.share, '.1%')"
+          },
+          "limit": {
+            "signal": "max(0, datum.x1 - datum.x0 - 16)"
+          },
+          "fontSize": {
+            "value": 12
+          },
+          "fontWeight": {
+            "value": "normal"
+          },
+          "fill": {
+            "signal": "datum.id === 'Other opening families' ? '#29352B' : 'white'"
+          },
+          "opacity": {
+            "signal": "datum.x1-datum.x0 > 65 && datum.y1-datum.y0 > 45 ? 1 : 0"
+          }
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Arial"
+  }
+}
