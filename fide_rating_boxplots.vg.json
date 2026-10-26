@@ -1,0 +1,239 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 620,
+  "height": 330,
+  "title": {
+    "text": "How do ratings vary across federations?",
+    "subtitle": [
+      "Australia and seven selected comparison federations",
+      "Boxes: middle 50% \u00b7 centre line: median \u00b7 whiskers: minimum to maximum"
+    ]
+  },
+  "data": {
+    "url": "fide_rating_boxplots.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "players": "number",
+        "minimum": "number",
+        "q1": "number",
+        "median": "number",
+        "q3": "number",
+        "maximum": "number"
+      }
+    }
+  },
+  "encoding": {
+    "y": {
+      "field": "country",
+      "type": "nominal",
+      "sort": [
+        "Australia",
+        "New Zealand",
+        "England",
+        "India",
+        "China",
+        "United States",
+        "Germany",
+        "Russia"
+      ],
+      "title": null
+    },
+    "color": {
+      "condition": {
+        "test": "datum.federation === 'AUS'",
+        "value": "#D99424"
+      },
+      "value": "#426B50"
+    },
+    "tooltip": [
+      {
+        "field": "country",
+        "type": "nominal",
+        "title": "Federation"
+      },
+      {
+        "field": "players",
+        "type": "quantitative",
+        "title": "Players",
+        "format": ",.0f"
+      },
+      {
+        "field": "minimum",
+        "type": "quantitative",
+        "title": "Minimum",
+        "format": ",.0f"
+      },
+      {
+        "field": "q1",
+        "type": "quantitative",
+        "title": "25th percentile",
+        "format": ",.0f"
+      },
+      {
+        "field": "median",
+        "type": "quantitative",
+        "title": "Median",
+        "format": ",.0f"
+      },
+      {
+        "field": "q3",
+        "type": "quantitative",
+        "title": "75th percentile",
+        "format": ",.0f"
+      },
+      {
+        "field": "maximum",
+        "type": "quantitative",
+        "title": "Maximum",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "minimum",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1400,
+              2900
+            ],
+            "zero": false
+          },
+          "title": "FIDE standard rating"
+        },
+        "x2": {
+          "field": "maximum"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "size": 23
+      },
+      "encoding": {
+        "x": {
+          "field": "q1",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1400,
+              2900
+            ],
+            "zero": false
+          },
+          "title": "FIDE standard rating"
+        },
+        "x2": {
+          "field": "q3"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "tick",
+        "orient": "vertical",
+        "color": "white",
+        "thickness": 3,
+        "size": 23
+      },
+      "encoding": {
+        "x": {
+          "field": "median",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1400,
+              2900
+            ],
+            "zero": false
+          },
+          "title": "FIDE standard rating"
+        },
+        "color": {
+          "value": "white"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "tick",
+        "orient": "vertical",
+        "size": 13,
+        "thickness": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "minimum",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1400,
+              2900
+            ],
+            "zero": false
+          },
+          "title": "FIDE standard rating"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "tick",
+        "orient": "vertical",
+        "size": 13,
+        "thickness": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "maximum",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1400,
+              2900
+            ],
+            "zero": false
+          },
+          "title": "FIDE standard rating"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "opacity": 0.025
+      },
+      "encoding": {
+        "x": {
+          "datum": 1400
+        },
+        "x2": {
+          "datum": 2900
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13
+    },
+    "title": {
+      "anchor": "start",
+      "fontSize": 18,
+      "subtitleFontSize": 12
+    }
+  }
+}

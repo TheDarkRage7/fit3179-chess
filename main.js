@@ -43,3 +43,12 @@ vegaEmbed(
     "The rating chart could not be loaded.";
   console.error(error);
 });
+vegaEmbed(
+  "#rating-boxplots",
+  "fide_rating_boxplots.vg.json",
+  { actions: true }
+).catch(error => {
+  document.querySelector("#rating-boxplots").textContent =
+    "The rating comparison could not be loaded.";
+  console.error(error);
+});
