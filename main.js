@@ -88,3 +88,12 @@ vegaEmbed(
     "The opening Sankey diagram could not be loaded.";
   console.error(error);
 });
+vegaEmbed(
+  "#australia-olympiad-slope",
+  "australia_olympiad_slope.vg.json",
+  { actions: true }
+).catch(error => {
+  document.querySelector("#australia-olympiad-slope").textContent =
+    "The Olympiad chart could not be loaded.";
+  console.error(error);
+});

@@ -1,0 +1,200 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 300,
+  "padding": {
+    "left": 100,
+    "right": 110,
+    "top": 10,
+    "bottom": 10
+  },
+  "title": {
+    "text": "How did Australia finish against its seed?",
+    "subtitle": [
+      "Budapest Chess Olympiad 2024 \u00b7 Open and Women\u2019s events",
+      "Lower rank numbers are better \u00b7 each event has a separate field"
+    ]
+  },
+  "data": {
+    "values": [
+      {
+        "team": "Open",
+        "stage": "Starting seed",
+        "rank": 37,
+        "starting_seed": 37,
+        "final_position": 45,
+        "places_gained": -8,
+        "label": "Open: 37"
+      },
+      {
+        "team": "Open",
+        "stage": "Final position",
+        "rank": 45,
+        "starting_seed": 37,
+        "final_position": 45,
+        "places_gained": -8,
+        "label": "Open: 45"
+      },
+      {
+        "team": "Women",
+        "stage": "Starting seed",
+        "rank": 46,
+        "starting_seed": 46,
+        "final_position": 36,
+        "places_gained": 10,
+        "label": "Women: 46"
+      },
+      {
+        "team": "Women",
+        "stage": "Final position",
+        "rank": 36,
+        "starting_seed": 46,
+        "final_position": 36,
+        "places_gained": 10,
+        "label": "Women: 36"
+      }
+    ]
+  },
+  "encoding": {
+    "x": {
+      "field": "stage",
+      "type": "ordinal",
+      "sort": [
+        "Starting seed",
+        "Final position"
+      ],
+      "title": null,
+      "axis": {
+        "labelAngle": 0
+      },
+      "scale": {
+        "padding": 0.15
+      }
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          30,
+          50
+        ],
+        "reverse": true,
+        "zero": false,
+        "nice": false
+      },
+      "title": "Rank (lower is better)",
+      "axis": {
+        "values": [
+          30,
+          35,
+          40,
+          45,
+          50
+        ],
+        "format": "d"
+      }
+    },
+    "color": {
+      "field": "team",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Open",
+          "Women"
+        ],
+        "range": [
+          "#426B50",
+          "#D99424"
+        ]
+      },
+      "legend": null
+    },
+    "tooltip": [
+      {
+        "field": "team",
+        "type": "nominal",
+        "title": "Australia team"
+      },
+      {
+        "field": "starting_seed",
+        "type": "quantitative",
+        "title": "Starting seed"
+      },
+      {
+        "field": "final_position",
+        "type": "quantitative",
+        "title": "Final position"
+      },
+      {
+        "field": "places_gained",
+        "type": "quantitative",
+        "title": "Places gained (negative = lost)"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "point": {
+          "filled": true,
+          "size": 110
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.stage === 'Starting seed'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -12,
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.stage === 'Final position'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "title": {
+      "anchor": "start",
+      "fontSize": 19,
+      "subtitleFontSize": 12
+    }
+  }
+}
