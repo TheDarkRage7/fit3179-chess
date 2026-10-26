@@ -236,6 +236,35 @@
         shown, not all openings.
       </p>
     </section>
+    <section>
+      <h2>White moves. How does Black reply?</h2>
+
+      <p>
+        Every opening begins with a choice and a response.
+        Follow the paths from White’s first move on the left
+        to Black’s reply on the right. Wider paths represent
+        more games. Hover over a path for counts and percentages.
+      </p>
+
+      <div id="opening-sankey"></div>
+
+      <p>
+        Move notation: e4 means a pawn moves to the e4 square;
+        Nf6 means a knight moves to f6.
+      </p>
+
+      <p>
+        Source:
+        <a href="https://www.kaggle.com/datasets/datasnaek/chess"
+          target="_blank" rel="noopener">
+          Chess Game Dataset on Kaggle, collected from Lichess
+        </a>.
+        Based on 15,111 unique rated games from the historical
+        2013–2017 sample after cleaning. Six games with fewer
+        than two recorded moves were excluded. Less common
+        first moves and replies are grouped as “Other”.
+      </p>
+    </section>
   </main>
   <script src="main.js"></script>
 </body>

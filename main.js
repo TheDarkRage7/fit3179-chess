@@ -79,3 +79,12 @@ vegaEmbed(
     "The opening bump chart could not be loaded.";
   console.error(error);
 });
+vegaEmbed(
+  "#opening-sankey",
+  "opening_moves_sankey.vg.json",
+  { actions: true }
+).catch(error => {
+  document.querySelector("#opening-sankey").textContent =
+    "The opening Sankey diagram could not be loaded.";
+  console.error(error);
+});
