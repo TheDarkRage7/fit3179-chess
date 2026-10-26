@@ -52,3 +52,12 @@ vegaEmbed(
     "The rating comparison could not be loaded.";
   console.error(error);
 });
+vegaEmbed(
+  "#rating-heatmap",
+  "fide_rating_heatmap.vg.json",
+  { actions: true }
+).catch(error => {
+  document.querySelector("#rating-heatmap").textContent =
+    "The rating heatmap could not be loaded.";
+  console.error(error);
+});

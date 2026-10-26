@@ -1,0 +1,154 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 650,
+  "height": 340,
+  "title": {
+    "text": "Which rating groups are most common?",
+    "subtitle": [
+      "Share of rated players within each federation",
+      "Each row totals 100% \u00b7 active and inactive standard-rated players"
+    ]
+  },
+  "data": {
+    "url": "fide_rating_heatmap.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "players": "number",
+        "total_players": "number",
+        "proportion": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "rating_band",
+      "type": "ordinal",
+      "sort": [
+        "1400\u20131599",
+        "1600\u20131799",
+        "1800\u20131999",
+        "2000\u20132199",
+        "2200\u20132399",
+        "2400\u20132599",
+        "2600+"
+      ],
+      "title": "FIDE standard rating",
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "country",
+      "type": "nominal",
+      "sort": [
+        "Australia",
+        "New Zealand",
+        "England",
+        "India",
+        "China",
+        "United States",
+        "Germany",
+        "Russia"
+      ],
+      "title": null
+    },
+    "tooltip": [
+      {
+        "field": "country",
+        "type": "nominal",
+        "title": "Federation"
+      },
+      {
+        "field": "rating_band",
+        "type": "ordinal",
+        "title": "Rating band"
+      },
+      {
+        "field": "players",
+        "type": "quantitative",
+        "title": "Players",
+        "format": ","
+      },
+      {
+        "field": "total_players",
+        "type": "quantitative",
+        "title": "Federation total",
+        "format": ","
+      },
+      {
+        "field": "proportion",
+        "type": "quantitative",
+        "title": "Share",
+        "format": ".2%"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "proportion",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "greens",
+            "domain": [
+              0,
+              0.7
+            ]
+          },
+          "legend": {
+            "title": "Share of players",
+            "format": ".0%",
+            "orient": "bottom"
+          }
+        },
+        "stroke": {
+          "condition": {
+            "test": "datum.federation === 'AUS'",
+            "value": "#D99424"
+          },
+          "value": "white"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "proportion",
+          "type": "quantitative",
+          "format": ".1%"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.proportion >= 0.4",
+            "value": "white"
+          },
+          "value": "#202820"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 13
+    },
+    "title": {
+      "anchor": "start",
+      "fontSize": 18,
+      "subtitleFontSize": 12
+    }
+  }
+}
