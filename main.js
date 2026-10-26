@@ -70,3 +70,12 @@ vegaEmbed(
     "The opening treemap could not be loaded.";
   console.error(error);
 });
+vegaEmbed(
+  "#opening-bump-chart",
+  "opening_bump_chart.vg.json",
+  { actions: true }
+).catch(error => {
+  document.querySelector("#opening-bump-chart").textContent =
+    "The opening bump chart could not be loaded.";
+  console.error(error);
+});

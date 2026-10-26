@@ -210,6 +210,32 @@
         popularity across all Lichess games.
       </p>
     </section>
+    <section>
+      <h2>Do opening preferences change with rating?</h2>
+
+      <p>
+        Among the six opening families shown, the Sicilian Defense
+        rises from fourth in games averaging below 1200 to first
+        in every higher rating group. Follow each line to explore
+        how opening preferences differ across the sample.
+        Click a legend entry to highlight an opening.
+      </p>
+
+      <div id="opening-bump-chart"></div>
+
+      <p>
+        Source:
+        <a href="https://www.kaggle.com/datasets/datasnaek/chess"
+          target="_blank" rel="noopener">
+          Chess Game Dataset on Kaggle, collected from Lichess
+        </a>.
+        Uses the same cleaned historical sample of 15,117 rated
+        games from 2013–2017. Groups use the average of White
+        and Black’s Lichess ratings, which are separate from
+        FIDE ratings. Rankings compare only the six families
+        shown, not all openings.
+      </p>
+    </section>
   </main>
   <script src="main.js"></script>
 </body>

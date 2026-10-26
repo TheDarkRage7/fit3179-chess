@@ -1,0 +1,391 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 330,
+  "padding": {
+    "left": 5,
+    "right": 175,
+    "top": 10,
+    "bottom": 5
+  },
+  "title": {
+    "text": "Do opening preferences change with rating?",
+    "subtitle": [
+      "The six most common opening families overall, ranked within each rating group",
+      "Historical Lichess sample (2013–2017) · click legend entries to highlight; double-click to reset"
+    ]
+  },
+  "data": {
+    "values": [
+      {
+        "opening": "Sicilian Defense",
+        "rating_group": "Below 1200",
+        "rank": 4,
+        "games": 46,
+        "group_games": 885,
+        "share": 0.0519774011299435
+      },
+      {
+        "opening": "French Defense",
+        "rating_group": "Below 1200",
+        "rank": 3,
+        "games": 54,
+        "group_games": 885,
+        "share": 0.061016949152542375
+      },
+      {
+        "opening": "Queen's Pawn Game",
+        "rating_group": "Below 1200",
+        "rank": 2,
+        "games": 58,
+        "group_games": 885,
+        "share": 0.0655367231638418
+      },
+      {
+        "opening": "Italian Game",
+        "rating_group": "Below 1200",
+        "rank": 5,
+        "games": 23,
+        "group_games": 885,
+        "share": 0.02598870056497175
+      },
+      {
+        "opening": "King's Pawn Game",
+        "rating_group": "Below 1200",
+        "rank": 1,
+        "games": 96,
+        "group_games": 885,
+        "share": 0.10847457627118644
+      },
+      {
+        "opening": "Ruy Lopez",
+        "rating_group": "Below 1200",
+        "rank": 6,
+        "games": 19,
+        "group_games": 885,
+        "share": 0.021468926553672316
+      },
+      {
+        "opening": "Sicilian Defense",
+        "rating_group": "1200–1599",
+        "rank": 1,
+        "games": 766,
+        "group_games": 7205,
+        "share": 0.10631505898681472
+      },
+      {
+        "opening": "French Defense",
+        "rating_group": "1200–1599",
+        "rank": 3,
+        "games": 440,
+        "group_games": 7205,
+        "share": 0.061068702290076333
+      },
+      {
+        "opening": "Queen's Pawn Game",
+        "rating_group": "1200–1599",
+        "rank": 5,
+        "games": 338,
+        "group_games": 7205,
+        "share": 0.046911866759195
+      },
+      {
+        "opening": "Italian Game",
+        "rating_group": "1200–1599",
+        "rank": 4,
+        "games": 367,
+        "group_games": 7205,
+        "share": 0.05093684941013185
+      },
+      {
+        "opening": "King's Pawn Game",
+        "rating_group": "1200–1599",
+        "rank": 2,
+        "games": 486,
+        "group_games": 7205,
+        "share": 0.06745315752949341
+      },
+      {
+        "opening": "Ruy Lopez",
+        "rating_group": "1200–1599",
+        "rank": 6,
+        "games": 282,
+        "group_games": 7205,
+        "share": 0.039139486467730744
+      },
+      {
+        "opening": "Sicilian Defense",
+        "rating_group": "1600–1999",
+        "rank": 1,
+        "games": 928,
+        "group_games": 5866,
+        "share": 0.158199795431299
+      },
+      {
+        "opening": "French Defense",
+        "rating_group": "1600–1999",
+        "rank": 2,
+        "games": 473,
+        "group_games": 5866,
+        "share": 0.08063416297306512
+      },
+      {
+        "opening": "Queen's Pawn Game",
+        "rating_group": "1600–1999",
+        "rank": 3,
+        "games": 323,
+        "group_games": 5866,
+        "share": 0.05506307534947153
+      },
+      {
+        "opening": "Italian Game",
+        "rating_group": "1600–1999",
+        "rank": 4,
+        "games": 311,
+        "group_games": 5866,
+        "share": 0.05301738833958405
+      },
+      {
+        "opening": "King's Pawn Game",
+        "rating_group": "1600–1999",
+        "rank": 6,
+        "games": 93,
+        "group_games": 5866,
+        "share": 0.015854074326628026
+      },
+      {
+        "opening": "Ruy Lopez",
+        "rating_group": "1600–1999",
+        "rank": 5,
+        "games": 263,
+        "group_games": 5866,
+        "share": 0.0448346403000341
+      },
+      {
+        "opening": "Sicilian Defense",
+        "rating_group": "2000+",
+        "rank": 1,
+        "games": 224,
+        "group_games": 1161,
+        "share": 0.1929371231696813
+      },
+      {
+        "opening": "French Defense",
+        "rating_group": "2000+",
+        "rank": 2,
+        "games": 93,
+        "group_games": 1161,
+        "share": 0.08010335917312661
+      },
+      {
+        "opening": "Queen's Pawn Game",
+        "rating_group": "2000+",
+        "rank": 3,
+        "games": 67,
+        "group_games": 1161,
+        "share": 0.05770887166236004
+      },
+      {
+        "opening": "Italian Game",
+        "rating_group": "2000+",
+        "rank": 5,
+        "games": 35,
+        "group_games": 1161,
+        "share": 0.030146425495262703
+      },
+      {
+        "opening": "King's Pawn Game",
+        "rating_group": "2000+",
+        "rank": 6,
+        "games": 3,
+        "group_games": 1161,
+        "share": 0.002583979328165375
+      },
+      {
+        "opening": "Ruy Lopez",
+        "rating_group": "2000+",
+        "rank": 4,
+        "games": 54,
+        "group_games": 1161,
+        "share": 0.046511627906976744
+      }
+    ]
+  },
+  "encoding": {
+    "x": {
+      "field": "rating_group",
+      "type": "ordinal",
+      "sort": [
+        "Below 1200",
+        "1200–1599",
+        "1600–1999",
+        "2000+"
+      ],
+      "title": "Average of White and Black Lichess ratings",
+      "axis": {
+        "labelAngle": 0
+      },
+      "scale": {
+        "padding": 0.15
+      }
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Popularity rank among the six families shown",
+      "scale": {
+        "domain": [
+          1,
+          6
+        ],
+        "reverse": true,
+        "zero": false,
+        "nice": false
+      },
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "format": "d"
+      }
+    },
+    "color": {
+      "field": "opening",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Sicilian Defense",
+          "French Defense",
+          "Queen's Pawn Game",
+          "Italian Game",
+          "King's Pawn Game",
+          "Ruy Lopez"
+        ],
+        "range": [
+          "#426B50",
+          "#477DA8",
+          "#976C87",
+          "#A57636",
+          "#467F80",
+          "#786D9C"
+        ]
+      },
+      "legend": {
+        "title": null,
+        "orient": "bottom",
+        "columns": 2,
+        "labelLimit": 230
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "openingPick",
+        "value": 1
+      },
+      "value": 0.15
+    },
+    "tooltip": [
+      {
+        "field": "opening",
+        "title": "Opening family",
+        "type": "nominal"
+      },
+      {
+        "field": "rating_group",
+        "title": "Average rating",
+        "type": "ordinal"
+      },
+      {
+        "field": "rank",
+        "title": "Rank among six shown",
+        "type": "quantitative"
+      },
+      {
+        "field": "games",
+        "title": "Games using this family",
+        "type": "quantitative",
+        "format": ","
+      },
+      {
+        "field": "group_games",
+        "title": "All games in rating group",
+        "type": "quantitative",
+        "format": ","
+      },
+      {
+        "field": "share",
+        "title": "Share of all group games",
+        "type": "quantitative",
+        "format": ".1%"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "openingPick",
+          "select": {
+            "type": "point",
+            "fields": [
+              "opening"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 85
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.rating_group === '2000+'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 12,
+        "limit": 170
+      },
+      "encoding": {
+        "text": {
+          "field": "opening"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "title": {
+      "anchor": "start",
+      "fontSize": 19,
+      "subtitleFontSize": 11
+    },
+    "legend": {
+      "labelFontSize": 12
+    }
+  }
+}
