@@ -1,22 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 650,
+  "height": 320,
   "title": {
     "text": "How has online chess grown?",
     "subtitle": "Monthly rated standard games on Lichess, Jan 2013–Sep 2026",
     "anchor": "start"
   },
-  "width": 650,
-  "height": 320,
   "data": {
     "url": "lichess_monthly_games.csv",
     "format": {
-      "type": "csv"
+      "type": "csv",
+      "parse": {
+        "month": "date",
+        "games": "number"
+      }
     }
-  },
-  "mark": {
-    "type": "line",
-    "color": "#426B50",
-    "strokeWidth": 2.5
   },
   "encoding": {
     "x": {
@@ -25,9 +24,7 @@
       "title": "Year",
       "axis": {
         "format": "%Y",
-        "tickCount": 8,
-        "labelAngle": 0,
-        "grid": false
+        "tickCount": 8
       }
     },
     "y": {
@@ -41,36 +38,113 @@
         "format": "~s",
         "tickCount": 6
       }
-    },
-    "tooltip": [
-      {
-        "field": "month",
-        "type": "temporal",
-        "title": "Month",
-        "format": "%B %Y"
-      },
-      {
-        "field": "games",
-        "type": "quantitative",
-        "title": "Rated games",
-        "format": ","
-      }
-    ]
+    }
   },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#426B50",
+        "strokeWidth": 2.5
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "param": "hoverMonth",
+            "empty": false
+          }
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#9A702E",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "y2": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "param": "hoverMonth",
+            "empty": false
+          }
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "#9A702E",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x2": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hoverMonth",
+          "select": {
+            "type": "point",
+            "fields": ["month"],
+            "nearest": true,
+            "on": "pointermove",
+            "clear": "pointerout",
+            "toggle": false
+          }
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "color": "#D99424",
+        "stroke": "white",
+        "strokeWidth": 2,
+        "size": 110
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "hoverMonth",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "month",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%B %Y"
+          },
+          {
+            "field": "games",
+            "type": "quantitative",
+            "title": "Rated games",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ],
   "config": {
     "view": {
       "stroke": null
     },
     "axis": {
       "labelFontSize": 12,
-      "titleFontSize": 13,
-      "titlePadding": 12,
-      "gridColor": "#E5E8E3"
-    },
-    "title": {
-      "fontSize": 18,
-      "subtitleFontSize": 12,
-      "subtitlePadding": 8
+      "titleFontSize": 13
     }
   }
 }
