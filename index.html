@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Chess visualisation</title>
+  <title>Chess: From Screens to the World</title>
 
   <link rel="stylesheet" href="style.css">
 
@@ -14,287 +14,458 @@
 </head>
 
 <body>
-  <main>
-    <h1>Chess from screens to the world</h1>
+  <a class="skip-link" href="#main-content">Skip to charts</a>
 
-    <section>
-      <h2>The growth of online chess</h2>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">A data story for Australian chess enthusiasts</p>
 
-      <p>
-        Explore how the number of rated standard games played on
-        Lichess has changed since 2013. Each observation represents
-        one month of activity. These counts measure games, not
-        individual players, and cover Lichess rather than all
-        online chess platforms.
+      <h1>Chess, from screens<br>to the world.</h1>
+
+      <p class="hero-intro">
+        Millions of games. A world of players. Explore how online chess
+        has grown, where Australia fits, and the choices that begin a game.
       </p>
 
-      <div id="practice-chart"></div>
-
-      <p class="source">
-        Source:
-        <a href="https://database.lichess.org/standard/counts.txt">
-            Lichess open database — monthly standard rated game counts
-        </a>.
-        Coverage: January 2013–September 2026.
+      <p class="byline">
+        By Dev Patel · FIT3179 Data Visualisation II
       </p>
-    </section>
-    <section>
-        <h2>Where are chess grandmasters?</h2>
+    </div>
+
+    <div class="board-motif" aria-hidden="true"></div>
+  </header>
+
+  <nav class="chapter-nav" aria-label="Chapters">
+    <a href="#world">01 · The world</a>
+    <a href="#ratings">02 · Australia's ratings</a>
+    <a href="#openings">03 · Opening choices</a>
+    <a href="#tournaments">04 · The Olympiad</a>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- CHAPTER 1 -->
+    <section class="chapter" id="world">
+      <header class="chapter-heading">
+        <p class="eyebrow">Chapter 01</p>
+        <h2>A game without borders</h2>
+        <p>
+          From online play to international federations, explore where
+          chess activity is recorded and how participation compares.
+        </p>
+      </header>
+
+      <article class="chart-card">
+        <h3>The growth of online chess</h3>
 
         <p>
-            Circle area represents the number of GM title holders
-            listed under each federation in the supplied FIDE
-            standard-rating file. Australia is highlighted in orange.
-            Hover over a circle to see its count.
+          Explore how monthly rated standard games on Lichess have
+          changed since 2013. These counts measure games, not individual
+          players, and cover Lichess rather than all online chess platforms.
         </p>
 
-        <div id="grandmasters-map"></div>
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Lichess growth chart">
+          <div id="practice-chart" class="chart"></div>
+        </div>
 
         <p class="source">
-            Source:
-            <a href="https://ratings.fide.com/download_lists.phtml">
-            FIDE standard rating list
-            </a>.
-            Map boundaries: World Atlas / Natural Earth.
-            Counts include active and inactive listed players.
-            Federation affiliation does not necessarily indicate residence.
-            Records under FID and NON are excluded.
-        </p>
-    </section>
-    <section>
-        <h2>Where is rated chess most widespread?</h2>
-
-        <p>
-            This map compares listed FIDE standard-rated players
-            relative to population. Darker green indicates more
-            rated players per million residents. Hover over a
-            country to see its figures.
-        </p>
-
-        <div id="participation-map"></div>
-
-        <p class="source">
-            Sources:
-            <a href="https://ratings.fide.com/download_lists.phtml">
-            FIDE standard rating list
-            </a>
-            and
-            <a href="https://data.worldbank.org/indicator/SP.POP.TOTL">
-            World Bank population data
-            </a>.
-            Population year: 2025. Counts include active and inactive
-            listed players, using federation affiliation rather than
-            verified residence. England, Scotland and Wales are
-            combined for the UK. Grey indicates no matched data.
-            Map boundaries: World Atlas / Natural Earth.
-        </p>
-    </section>
-    <section>
-      <h2>Where has the Chess Olympiad been hosted?</h2>
-
-      <p>
-          These cities hosted completed Chess Olympiads between
-          2000 and 2026. Each city has one equal-sized dot.
-          Colour shows its latest hosting period. Hover over
-          a dot to see all its hosting years.
-      </p>
-
-      <div id="olympiad-hosts-map"></div>
-
-      <p class="source">
           Source:
-          <a href="https://www.olimpbase.org/olympiads/men_results.html">
-          OlimpBase — Chess Olympiad history
+          <a href="https://database.lichess.org/standard/counts.txt"
+             target="_blank" rel="noopener">
+            Lichess monthly standard rated game counts
+          </a>.
+          Coverage: January 2013–September 2026.
+        </p>
+      </article>
+
+      <article class="chart-card">
+        <h3>Where are chess grandmasters?</h3>
+
+        <p>
+          Circle area represents the number of GM title holders listed
+          under each federation in the supplied FIDE standard-rating
+          file. Australia is highlighted in orange.
+          Hover over a circle to see its count.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Grandmaster map">
+          <div id="grandmasters-map" class="chart"></div>
+        </div>
+
+        <p class="source">
+          Source:
+          <a href="https://ratings.fide.com/download_lists.phtml"
+             target="_blank" rel="noopener">
+            FIDE standard rating list
+          </a>.
+          Counts include active and inactive listed players.
+          Federation affiliation does not necessarily indicate residence.
+          Records under FID and NON are excluded.
+          Map boundaries: World Atlas / Natural Earth.
+        </p>
+      </article>
+
+      <article class="chart-card">
+        <h3>Where is rated chess most widespread?</h3>
+
+        <p>
+          A large number of rated players can partly reflect a large
+          population. This map compares listed FIDE standard-rated players
+          per million residents. Darker green indicates a higher rate.
+          Hover over a country to see its figures.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Rated players per million map">
+          <div id="participation-map" class="chart"></div>
+        </div>
+
+        <p class="source">
+          Sources:
+          <a href="https://ratings.fide.com/download_lists.phtml"
+             target="_blank" rel="noopener">
+            FIDE standard rating list
+          </a>
+          and
+          <a href="https://data.worldbank.org/indicator/SP.POP.TOTL"
+             target="_blank" rel="noopener">
+            World Bank population data
+          </a>.
+          Population year: 2025. Counts include active and inactive listed
+          players, using federation affiliation rather than verified residence.
+          England, Scotland and Wales are combined for the UK.
+          Grey indicates no matched data.
+          Map boundaries: World Atlas / Natural Earth.
+        </p>
+      </article>
+    </section>
+
+    <!-- CHAPTER 2 -->
+    <section class="chapter" id="ratings">
+      <header class="chapter-heading">
+        <p class="eyebrow">Chapter 02</p>
+        <h2>Where does Australia fit?</h2>
+        <p>
+          Ratings provide another perspective on the chess community.
+          Compare Australia's distribution with the world and selected
+          federations. These charts use FIDE standard ratings.
+        </p>
+      </header>
+
+      <article class="chart-card">
+        <h3>How do Australian chess ratings compare?</h3>
+
+        <p>
+          Use the dropdown to compare Australia with the worldwide
+          distribution. Percentages allow comparison despite different
+          player totals. Hover within a rating column to see its
+          player count and share.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Rating distribution histogram">
+          <div id="rating-histogram" class="chart"></div>
+        </div>
+
+        <p class="source">
+          Source:
+          <a href="https://ratings.fide.com/download_lists.phtml"
+             target="_blank" rel="noopener">
+            FIDE standard rating list
+          </a>.
+          Includes active and inactive players with a published standard
+          rating. Australia refers to Australian federation affiliation.
+          The worldwide group includes Australia.
+        </p>
+      </article>
+
+      <article class="chart-card">
+        <h3>How do ratings vary across federations?</h3>
+
+        <p>
+          Compare Australia with seven selected federations.
+          Each box contains the middle 50% of player ratings.
+          Its white line marks the median, while the whiskers extend
+          from the lowest to the highest rating.
+          Hover over a row to explore the values.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Federation rating box plots">
+          <div id="rating-boxplots" class="chart"></div>
+        </div>
+
+        <p class="source">
+          Source:
+          <a href="https://ratings.fide.com/download_lists.phtml"
+             target="_blank" rel="noopener">
+            FIDE standard rating list
+          </a>.
+          Includes active and inactive standard-rated players,
+          grouped by federation affiliation.
+          Comparison federations are selected examples, not a
+          complete ranking of countries.
+        </p>
+      </article>
+
+      <article class="chart-card">
+        <h3>Which rating groups are most common?</h3>
+
+        <p>
+          In Australia, 38.8% of listed standard-rated players fall within
+          the 1600–1799 band. Compare the rows to see where each
+          federation's players are concentrated.
+          Darker green indicates a larger share.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Federation rating heatmap">
+          <div id="rating-heatmap" class="chart"></div>
+        </div>
+
+        <p class="source">
+          Source:
+          <a href="https://ratings.fide.com/download_lists.phtml"
+             target="_blank" rel="noopener">
+            FIDE standard rating list
+          </a>.
+          Includes active and inactive standard-rated players,
+          grouped by federation affiliation. Rows total 100% before
+          rounding. A displayed 0.0% may represent a small non-zero
+          share; hover for details.
+        </p>
+      </article>
+    </section>
+
+    <!-- CHAPTER 3 -->
+    <section class="chapter" id="openings">
+      <header class="chapter-heading">
+        <p class="eyebrow">Chapter 03</p>
+        <h2>The first move matters</h2>
+        <p>
+          What can Australian players learn from opening choices online?
+          Explore a historical sample of Lichess games, from popular
+          opening families to the first move and reply.
+          This sample describes past games, not current platform-wide trends.
+        </p>
+      </header>
+
+      <article class="chart-card">
+        <h3>How do chess games begin?</h3>
+
+        <p>
+          The Sicilian Defense appears in 13.0% of this sample, making it
+          the most common individual opening family.
+          Larger rectangles represent more games.
+          Hover for full opening names, counts and percentages.
+          The grey rectangle combines the smaller opening families.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Opening family treemap">
+          <div id="opening-treemap" class="chart"></div>
+        </div>
+
+        <p class="source">
+          Source:
+          <a href="https://www.kaggle.com/datasets/datasnaek/chess"
+             target="_blank" rel="noopener">
+            Chess Game Dataset on Kaggle, collected from Lichess
+          </a>.
+          Based on 15,117 unique rated games from the 2013–2017 dataset
+          after excluding game IDs with conflicting details.
+          Variations are grouped by the opening name before the colon.
+          The top 12 families are shown separately; all others are combined.
+          This sample does not represent current popularity across all
+          Lichess games.
+        </p>
+      </article>
+
+      <article class="chart-card">
+        <h3>Do opening preferences change with rating?</h3>
+
+        <p>
+          Among the six families shown, the Sicilian Defense rises from
+          fourth in games averaging below 1200 to first in every higher
+          rating group. Follow each line to compare preferences.
+          Click a legend entry to highlight an opening.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Opening popularity bump chart">
+          <div id="opening-bump-chart" class="chart"></div>
+        </div>
+
+        <p class="source">
+          Source:
+          <a href="https://www.kaggle.com/datasets/datasnaek/chess"
+             target="_blank" rel="noopener">
+            Chess Game Dataset on Kaggle, collected from Lichess
+          </a>.
+          Uses the same cleaned historical sample of 15,117 rated games.
+          Groups use the average of White and Black's Lichess ratings,
+          which are separate from FIDE ratings.
+          Rankings compare only the six families shown, not all openings.
+          Differences between groups do not show players changing
+          preferences over time.
+        </p>
+      </article>
+
+      <article class="chart-card">
+        <h3>White moves. How does Black reply?</h3>
+
+        <p>
+          Every opening begins with a choice and a response.
+          Follow the paths from White's first move on the left to
+          Black's reply on the right. Wider paths represent more games.
+          Hover over a path for counts and percentages.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="First move and reply Sankey diagram">
+          <div id="opening-sankey" class="chart"></div>
+        </div>
+
+        <p>
+          Reading the notation: e4 means a pawn moves to the e4 square;
+          Nf6 means a knight moves to f6.
+        </p>
+
+        <p class="source">
+          Source:
+          <a href="https://www.kaggle.com/datasets/datasnaek/chess"
+             target="_blank" rel="noopener">
+            Chess Game Dataset on Kaggle, collected from Lichess
+          </a>.
+          Based on 15,111 unique rated games from the cleaned historical
+          sample. Six games with fewer than two recorded moves were
+          excluded. Less common first moves and replies are grouped as
+          Other.
+        </p>
+      </article>
+    </section>
+
+    <!-- CHAPTER 4 -->
+    <section class="chapter" id="tournaments">
+      <header class="chapter-heading">
+        <p class="eyebrow">Chapter 04</p>
+        <h2>On the world stage</h2>
+        <p>
+          International tournaments bring national teams together.
+          Trace the Chess Olympiad's host cities, then explore how
+          Australia performed against its starting seed in Budapest in 2024.
+        </p>
+      </header>
+
+      <article class="chart-card">
+        <h3>Where has the Chess Olympiad been hosted?</h3>
+
+        <p>
+          These cities hosted completed Chess Olympiads between 2000
+          and 2026. Each city has one equal-sized dot.
+          Colour shows its latest hosting period.
+          Hover over a dot to see all its hosting years.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Chess Olympiad host city map">
+          <div id="olympiad-hosts-map" class="chart"></div>
+        </div>
+
+        <p class="source">
+          Source:
+          <a href="https://www.olimpbase.org/olympiads/men_results.html"
+             target="_blank" rel="noopener">
+            OlimpBase — Chess Olympiad history
           </a>.
           The 2020 edition was cancelled.
           Markers use approximate city-centre coordinates,
           not exact tournament venues.
           Map boundaries: World Atlas / Natural Earth.
-      </p>
+        </p>
+      </article>
+
+      <article class="chart-card">
+        <h3>How did Australia perform at the 2024 Olympiad?</h3>
+
+        <p>
+          Australia's women's team finished 36th, ten places above its
+          starting seed of 46th. The Open team finished 45th, eight
+          places below its starting seed of 37th.
+        </p>
+
+        <p>
+          Read each line from left to right. Starting seed is the
+          pre-tournament ranking based on player ratings; final position
+          is the actual result. Lower numbers are better, so an upward
+          line indicates a finish above the starting seed.
+          The teams competed in separate events.
+        </p>
+
+        <div class="chart-scroll" tabindex="0"
+             role="region" aria-label="Australia Olympiad seed and finish chart">
+          <div id="australia-olympiad-slope" class="chart"></div>
+        </div>
+
+        <p class="source">
+          Source: Chess-Results,
+          <a href="https://chess-results.com/tnr967173.aspx"
+             target="_blank" rel="noopener">
+            2024 Open results
+          </a>
+          and
+          <a href="https://chess-results.com/tnr967172.aspx"
+             target="_blank" rel="noopener">
+            2024 Women's results
+          </a>.
+          Final standings after 11 rounds.
+        </p>
+      </article>
     </section>
-    <section>
-      <h2>How do Australian chess ratings compare?</h2>
+
+    <aside class="closing-note">
+      <p class="eyebrow">An Australian perspective</p>
+      <h2>One game, many ways to take part.</h2>
 
       <p>
-        Compare the distribution of FIDE standard ratings in Australia
-        with the worldwide distribution. Percentages allow comparison
-        despite the different numbers of players.
-        Use the dropdown to switch groups and hover within a rating
-        column to explore the numbers.
+        Online game counts, federation ratings and tournament results
+        reveal different parts of chess. Australia's place comes into
+        focus when we consider participation, the spread of ratings
+        and international performance together.
+        The opening sample adds another perspective: how players
+        choose to begin their games.
       </p>
+    </aside>
 
-      <div id="rating-histogram"></div>
-
-      <p>
-        Source:
-        <a href="https://ratings.fide.com/download_lists.phtml"
-          target="_blank" rel="noopener">
-          FIDE standard rating list
-        </a>.
-        Includes active and inactive players with a published standard
-        rating. Australia refers to Australian federation affiliation.
-        The worldwide group includes Australia.
-      </p>
-    </section>
-    <section>
-      <h2>How do ratings vary across federations?</h2>
+    <footer>
+      <p><strong>About this visualisation</strong></p>
 
       <p>
-        Compare Australia with seven selected chess federations.
-        Each box contains the middle 50% of player ratings, with
-        a white line marking the median. The whiskers extend
-        from the lowest to the highest rating.
-        Hover over a row to explore the values.
-      </p>
-
-      <div id="rating-boxplots"></div>
-
-      <p>
-        Source:
-        <a href="https://ratings.fide.com/download_lists.phtml"
-          target="_blank" rel="noopener">
-          FIDE standard rating list
-        </a>.
-        Includes active and inactive standard-rated players.
-        Groups represent federation affiliation.
-      </p>
-    </section>
-    <section>
-      <h2>Which rating groups are most common?</h2>
-
-      <p>
-        In Australia, 38.8% of listed standard-rated players fall
-        within the 1600–1799 rating band. Compare the rows below
-        to see how the distribution differs across eight selected
-        federations. Darker green indicates a larger share.
-        Hover over a cell for exact counts and percentages.
-      </p>
-
-      <div id="rating-heatmap"></div>
-
-      <p>
-        Source:
-        <a href="https://ratings.fide.com/download_lists.phtml"
-          target="_blank" rel="noopener">
-          FIDE standard rating list
-        </a>.
-        Includes active and inactive standard-rated players,
-        grouped by federation affiliation. Each row totals 100%
-        before rounding. A displayed 0.0% may represent a small
-        non-zero share; hover for details.
-      </p>
-    </section>
-    <section>
-      <h2>How do chess games begin?</h2>
-
-      <p>
-        The Sicilian Defense appears in 13.0% of this historical
-        sample, making it the most common individual opening family.
-        Larger rectangles represent more games. Hover over a
-        rectangle for its full name, game count and percentage.
-      </p>
-
-      <div id="opening-treemap"></div>
-
-      <p>
-        Source:
-        <a href="https://www.kaggle.com/datasets/datasnaek/chess"
-          target="_blank" rel="noopener">
-          Chess Game Dataset on Kaggle, collected from Lichess
-        </a>.
-        Based on 15,117 unique rated games from 2013–2017 after
-        excluding game IDs with conflicting details. Variations
-        are grouped by the opening name before the colon.
-        The top 12 families are shown separately; all others
-        are combined. This sample does not represent current
-        popularity across all Lichess games.
-      </p>
-    </section>
-    <section>
-      <h2>Do opening preferences change with rating?</h2>
-
-      <p>
-        Among the six opening families shown, the Sicilian Defense
-        rises from fourth in games averaging below 1200 to first
-        in every higher rating group. Follow each line to explore
-        how opening preferences differ across the sample.
-        Click a legend entry to highlight an opening.
-      </p>
-
-      <div id="opening-bump-chart"></div>
-
-      <p>
-        Source:
-        <a href="https://www.kaggle.com/datasets/datasnaek/chess"
-          target="_blank" rel="noopener">
-          Chess Game Dataset on Kaggle, collected from Lichess
-        </a>.
-        Uses the same cleaned historical sample of 15,117 rated
-        games from 2013–2017. Groups use the average of White
-        and Black’s Lichess ratings, which are separate from
-        FIDE ratings. Rankings compare only the six families
-        shown, not all openings.
-      </p>
-    </section>
-    <section>
-      <h2>White moves. How does Black reply?</h2>
-
-      <p>
-        Every opening begins with a choice and a response.
-        Follow the paths from White’s first move on the left
-        to Black’s reply on the right. Wider paths represent
-        more games. Hover over a path for counts and percentages.
-      </p>
-
-      <div id="opening-sankey"></div>
-
-      <p>
-        Move notation: e4 means a pawn moves to the e4 square;
-        Nf6 means a knight moves to f6.
+        Created by Dev Patel for FIT3179 Data Visualisation II.
+        Sources and coverage are listed beside each chart.
+        Hover for details; selected charts offer filters or highlighting.
+        On small screens, scroll within charts to see their full width.
       </p>
 
       <p>
-        Source:
-        <a href="https://www.kaggle.com/datasets/datasnaek/chess"
-          target="_blank" rel="noopener">
-          Chess Game Dataset on Kaggle, collected from Lichess
-        </a>.
-        Based on 15,111 unique rated games from the historical
-        2013–2017 sample after cleaning. Six games with fewer
-        than two recorded moves were excluded. Less common
-        first moves and replies are grouped as “Other”.
-      </p>
-    </section>
-    <section>
-      <h2>How did Australia perform at the 2024 Olympiad?</h2>
-
-      <p>
-        Australia’s women’s team finished 36th, ten places above
-        its starting seed of 46th. The Open team finished 45th,
-        eight places below its starting seed of 37th.
+        AI acknowledgement: ChatGPT assisted with data preparation,
+        Vega and Vega-Lite code, explanatory text and page styling.
       </p>
 
       <p>
-        Read each line from left to right: starting seed is the
-        pre-tournament ranking based on player ratings; final
-        position is the actual result. Lower numbers are better,
-        so an upward line indicates a finish above the starting
-        seed. The teams competed in separate events.
+        <a href="https://github.com/TheDarkRage7/fit3179-chess"
+           target="_blank" rel="noopener">
+          View code and data on GitHub
+        </a>
+        ·
+        <a href="#main-content">Back to the charts ↑</a>
       </p>
+    </footer>
 
-      <div id="australia-olympiad-slope"></div>
-
-      <p>
-        Source: Chess-Results,
-        <a href="https://chess-results.com/tnr967173.aspx"
-          target="_blank" rel="noopener">2024 Open results</a>
-        and
-        <a href="https://chess-results.com/tnr967172.aspx"
-          target="_blank" rel="noopener">2024 Women’s results</a>.
-        Final standings after 11 rounds.
-      </p>
-    </section>
   </main>
+
   <script src="main.js"></script>
 </body>
 </html>

@@ -1,99 +1,40 @@
-vegaEmbed("#practice-chart", "lichess_growth.vg.json", {
-  actions: true
-}).catch(function (error) {
-  document.getElementById("practice-chart").textContent =
-    "The chart could not load. Check the browser console.";
+const charts = [
+  ["practice-chart", "lichess_growth.vg.json"],
+  ["grandmasters-map", "grandmasters_map.vg.json"],
+  ["participation-map", "chess_participation_map.vg.json"],
+  ["rating-histogram", "fide_rating_histogram_hover.vg.json"],
+  ["rating-boxplots", "fide_rating_boxplots.vg.json"],
+  ["rating-heatmap", "fide_rating_heatmap.vg.json"],
+  ["opening-treemap", "opening_treemap.vg.json"],
+  ["opening-bump-chart", "opening_bump_chart.vg.json"],
+  ["opening-sankey", "opening_moves_sankey.vg.json"],
+  ["olympiad-hosts-map", "olympiad_hosts_map.vg.json"],
+  ["australia-olympiad-slope", "australia_olympiad_slope.vg.json"]
+];
 
-  console.error(error);
-});
-vegaEmbed("#grandmasters-map", "grandmasters_map.vg.json", {
-  actions: true
-}).catch(function (error) {
-  document.getElementById("grandmasters-map").textContent =
-    "The map could not load. Check the browser console.";
+async function loadChart(id, filename) {
+  const container = document.getElementById(id);
 
-  console.error(error);
-});
-vegaEmbed(
-  "#participation-map",
-  "chess_participation_map.vg.json",
-  { actions: true }
-).catch(function (error) {
-  document.getElementById("participation-map").textContent =
-    "The map could not load. Check the browser console.";
+  if (!container) {
+    console.error(`Missing chart container: ${id}`);
+    return;
+  }
 
-  console.error(error);
-});
-vegaEmbed(
-  "#olympiad-hosts-map",
-  "olympiad_hosts_map.vg.json",
-  { actions: true }
-).catch(function (error) {
-  document.getElementById("olympiad-hosts-map").textContent =
-    "The map could not load. Check the browser console.";
+  container.textContent = "Loading chart…";
 
-  console.error(error);
-});
-vegaEmbed(
-  "#rating-histogram",
-  "fide_rating_histogram_hover.vg.json",
-  { actions: true }
-).catch(error => {
-  document.querySelector("#rating-histogram").textContent =
-    "The rating chart could not be loaded.";
-  console.error(error);
-});
-vegaEmbed(
-  "#rating-boxplots",
-  "fide_rating_boxplots.vg.json",
-  { actions: true }
-).catch(error => {
-  document.querySelector("#rating-boxplots").textContent =
-    "The rating comparison could not be loaded.";
-  console.error(error);
-});
-vegaEmbed(
-  "#rating-heatmap",
-  "fide_rating_heatmap.vg.json",
-  { actions: true }
-).catch(error => {
-  document.querySelector("#rating-heatmap").textContent =
-    "The rating heatmap could not be loaded.";
-  console.error(error);
-});
-vegaEmbed(
-  "#opening-treemap",
-  "opening_treemap.vg.json",
-  { actions: true }
-).catch(error => {
-  document.querySelector("#opening-treemap").textContent =
-    "The opening treemap could not be loaded.";
-  console.error(error);
-});
-vegaEmbed(
-  "#opening-bump-chart",
-  "opening_bump_chart.vg.json",
-  { actions: true }
-).catch(error => {
-  document.querySelector("#opening-bump-chart").textContent =
-    "The opening bump chart could not be loaded.";
-  console.error(error);
-});
-vegaEmbed(
-  "#opening-sankey",
-  "opening_moves_sankey.vg.json",
-  { actions: true }
-).catch(error => {
-  document.querySelector("#opening-sankey").textContent =
-    "The opening Sankey diagram could not be loaded.";
-  console.error(error);
-});
-vegaEmbed(
-  "#australia-olympiad-slope",
-  "australia_olympiad_slope.vg.json",
-  { actions: true }
-).catch(error => {
-  document.querySelector("#australia-olympiad-slope").textContent =
-    "The Olympiad chart could not be loaded.";
-  console.error(error);
+  try {
+    await vegaEmbed(`#${id}`, filename, {
+      actions: true,
+      renderer: "svg"
+    });
+  } catch (error) {
+    container.textContent =
+      "This chart could not be loaded. Please refresh the page.";
+
+    console.error(`Could not load ${filename}:`, error);
+  }
+}
+
+charts.forEach(([id, filename]) => {
+  loadChart(id, filename);
 });
